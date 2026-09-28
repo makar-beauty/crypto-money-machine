@@ -1,5 +1,5 @@
 name: Crypto Scanner
-on: workflow_dispatch: schedule: - cron: "*/5 * * * *"
+"on": workflow_dispatch:
 jobs: scan: runs-on: ubuntu-latest
 steps:
   - name: Checkout repository
@@ -10,13 +10,13 @@ steps:
     with:
       python-version: "3.12"
 
-  - name: Install dependencies
+  - name: Install requests
     run: pip install requests
 
   - name: Run scanner
     run: python scanner.py
 
-  - name: Commit results
+  - name: Save results
     run: |
       git config user.name "github-actions[bot]"
       git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
